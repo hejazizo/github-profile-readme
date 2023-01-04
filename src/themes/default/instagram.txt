@@ -1,0 +1,1 @@
+[![Instagram Badge](https://img.shields.io/badge/-Instagram-purple?logo=instagram&logoColor=white&link=https://instagram.com/{ value }/)](https://www.instagram.com/{ value })

@@ -1,0 +1,3 @@
+<a href="https://www.twitter.com/{ value }" target="_blank" rel="noreferrer"><img
+src="https://img.shields.io/twitter/follow/{ value }?logo=twitter&style=for-the-badge&color=0891b2&labelColor=1c1917"
+/>
