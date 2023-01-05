@@ -1,8 +1,13 @@
 { name }
 
+{ profile_views }
 { twitter }
 { linkedin }
 { instagram }
 { email }
+{ homepage }
+{ github }
+
+{ description }
 
 { github_stats }

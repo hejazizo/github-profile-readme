@@ -1,48 +1,111 @@
 import streamlit as st
 from pathlib import Path
 from src.github_profile import generate_profile
+from src.constants import default_description
 
-st.title(":zap: Github Profile Readme Generator")
+def add_personal_info(tab, **kwargs):
+    """
+    Add personal info to tab.
 
-# Personal Info
+    :param tab: Streamlit tab
+    """
+    with tab:
+        col1, col2 = st.columns(2)
+        kwargs['name'] = col1.text_input('Name', 'Ali Hejazizo')
+        kwargs['email'] = col2.text_input('Email', 'hejazizo@ualberta.ca')
+        kwargs['phone'] = col1.text_input('Phone', '+1 780 680 3295')
+        kwargs['homepage'] = col2.text_input('Homepage', 'https://pytopia.ai')
+        kwargs['location'] = col1.text_input('Location', 'Toronto, Canada')
+
+    return kwargs
+
+
+def add_social_accounts(tab, **kwargs):
+    """
+    Add social accounts to tab.
+
+    :param tab: Streamlit tab
+    """
+    with tab:
+        col1, col2 = st.columns(2)
+        kwargs['github'] = col1.text_input('Github', 'hejazizo')
+        kwargs['linkedin'] = col2.text_input('Linkedin', 'hejazizo')
+        kwargs['twitter'] = col1.text_input('Twitter', 'hejazizo')
+        kwargs['facebook'] = col2.text_input('Facebook', 'hejazizo')
+        kwargs['instagram'] = col1.text_input('Instagram', 'ali.hejazzii')
+        kwargs['youtube'] = col2.text_input('Youtube')
+        kwargs['medium'] = col1.text_input('Medium')
+
+    return kwargs
+
+def add_description(tab, **kwargs):
+    """
+    Add description to tab.
+
+    :param tab: Streamlit tab
+    """
+    with tab:
+        kwargs['description'] = st.text_area('Description', default_description, height=300)
+
+    return kwargs
+
+def add_extensions(tab, **kwargs):
+    """
+    Add extensions to tab.
+
+    :param tab: Streamlit tab
+    """
+    with tab:
+        if not kwargs['github']:
+            st.error('For extensions, please enter your Github username in Social Accounts section.')
+            return
+
+        kwargs['github_stats'] = None
+        if st.checkbox('Show Github Stats', value=True):
+            kwargs['github_stats'] = kwargs['github']
+
+        kwargs['profile_views'] = None
+        if st.checkbox('Show Github Profile Views', value=True):
+            kwargs['profile_views'] = kwargs['github']
+
+    return kwargs
+
+st.set_page_config(
+    page_title='Github Profile Readme Generator',
+    page_icon='🧊',
+    layout='wide',
+    initial_sidebar_state='expanded',
+    menu_items={
+        'Report a bug': 'https://github.com/hejazizo/github-profile-readme/issues',
+        'About': 'Built by [Pytopia](pytopia.ai) team.'
+    }
+)
+
+st.title(':zap: Github Profile Readme Generator')
+st.header('Personalize your Readme')
+tab1, tab2, tab3, tab4 = st.tabs([
+    ':bust_in_silhouette: Profile Info',
+    ':globe_with_meridians: Social Accounts',
+    ':memo: Description',
+    ':heavy_plus_sign: Extensions'
+])
 kwargs = {}
-st.header("Personal Info")
-with st.expander("Personal Info"):
-    col1, col2 = st.columns(2)
-    kwargs["name"] = col1.text_input("Name")
-    kwargs["email"] = col2.text_input("Email")
-    kwargs["phone"] = col1.text_input("Phone")
-    kwargs["homepage"] = col2.text_input("Homepage")
-    kwargs["location"] = col1.text_input("Location")
+kwargs = add_personal_info(tab1, **kwargs)
+kwargs = add_social_accounts(tab2, **kwargs)
+kwargs = add_description(tab3, **kwargs)
+kwargs = add_extensions(tab4, **kwargs)
 
-# Social Media
-st.header("Social Media")
-with st.expander("Social Media"):
-    st.markdown("Enter your social media usernames (not links):")
-    col1, col2 = st.columns(2)
-    kwargs["github"] = col1.text_input("Github")
-    kwargs["linkedin"] = col2.text_input("Linkedin")
-    kwargs["twitter"] = col1.text_input("Twitter")
-    kwargs["facebook"] = col2.text_input("Facebook")
-    kwargs["instagram"] = col1.text_input("Instagram")
-    kwargs["youtube"] = col2.text_input("Youtube")
-    kwargs["medium"] = col1.text_input("Medium")
-
-# Extensions
-st.header("Extensions")
-with st.expander("Extensions"):
-    if st.checkbox("Show Github Stats"):
-        kwargs["github_stats"] = st.text_input("Github Stats Username:")
-
+st.header('Preview')
 # Select Theme
-st.header("Theme")
-themes = Path("src/themes").iterdir()
+themes = Path('src/themes').iterdir()
 themes = [theme.name for theme in themes]
-theme = st.selectbox("Select Theme", themes)
-st.markdown(f"Selected Theme: **{theme}**")
+theme = st.selectbox('Theme:', themes)
 
 # Generate Readme
-st.header("Readme")
 profile = generate_profile(theme, **kwargs)
-st.text("Copy the code below and paste it in your README.md file")
-st.code(profile)
+tab1, tab2 = st.tabs(['Preview', 'Code'])
+tab1.markdown(profile)
+
+with tab2:
+    st.text('Copy the code below and paste it in your README.md file')
+    st.code(profile)

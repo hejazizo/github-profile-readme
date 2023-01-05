@@ -1,0 +1,1 @@
+[![Website Badge](https://img.shields.io/badge/-Website-c14438?style=flat&logo=Google-Chrome&logoColor=white&link={ value })]({ value })

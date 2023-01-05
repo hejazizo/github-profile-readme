@@ -1,3 +1,1 @@
-<a href="https://www.twitter.com/{ value }" target="_blank" rel="noreferrer"><img
-src="https://img.shields.io/twitter/follow/{ value }?logo=twitter&style=for-the-badge&color=0891b2&labelColor=1c1917"
-/>
+[![Twitter Badge](https://img.shields.io/badge/-Twitter-1da1f2?labelColor=1da1f2&logo=twitter&logoColor=white&link=https://twitter.com/{ value })](https://twitter.com/{ value })
