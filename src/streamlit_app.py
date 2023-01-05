@@ -3,7 +3,8 @@ from pathlib import Path
 
 import streamlit as st
 
-sys.path.append('..')
+sys.path.append(str(Path(__file__).parent.absolute()))
+print(sys.path)
 
 from src.github_profile import generate_profile
 from src.sections import (add_description, add_extensions, add_personal_info,
