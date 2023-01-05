@@ -39,6 +39,7 @@ def add_description(tab, **kwargs):
     :param tab: Streamlit tab
     """
     with tab:
+        st.write('''Write a short description about yourself.''')
         kwargs['description'] = st.text_area('Description', default_description, height=300)
 
     return kwargs
@@ -50,6 +51,7 @@ def add_extensions(tab, **kwargs):
     :param tab: Streamlit tab
     """
     with tab:
+        st.write('''Add more to your profile. You can add Github stats, Github profile views, and more.''')
         kwargs['github'] = st.text_input('Github', 'hejazizo')
         if not kwargs['github']:
             st.warning('For extensions, you must enter your Github username.')

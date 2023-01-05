@@ -29,10 +29,14 @@ st.sidebar.markdown('''
 ''')
 
 '''
-- This app generates a Github profile readme file.
-- You can customize it and use it in your Github profile.
-- Fill out the forms below and then view the preview.
-- You can also copy the code and paste it in your `README.md` file.
+This app generates a Github profile readme file. To learn how to add a readme file to your Github profile, check out
+[this](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme).
+You can customize it and use it in your Github profile.
+- First, fill out the forms below.
+- Then, go to **Code** tab to copy the code and paste it in your `README.md` file.
+
+You can also change the theme of the readme file by selecting a theme from the dropdown below.
+Themes are added by the community. If you want to add a theme, check out the [Github repo](https://github.com/hejazizo/github-profile-readme).
 '''
 
 st.header('Personalize your Readme')
