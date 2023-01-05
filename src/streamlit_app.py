@@ -3,8 +3,9 @@ from pathlib import Path
 
 import streamlit as st
 
-sys.path.append(str(Path(__file__).parent.absolute()))
-print(sys.path)
+project_root = str(Path(__file__).parent.parent.absolute())
+if project_root not in sys.path:
+    sys.path.append(project_root)
 
 from src.github_profile import generate_profile
 from src.sections import (add_description, add_extensions, add_personal_info,
