@@ -7,13 +7,6 @@ def generate_profile(theme, **kwargs):
     with open(f"src/themes/{theme}/profile.txt") as f:
         profile = f.read()
 
-    # generate tech stacks badges
-    for key in ['tech_stacks', 'skills']:
-        items = kwargs.get(key, [])
-        kwargs[key] = ''
-        for tech_stack in items:
-            kwargs[key] += tech_stack + '\n'
-
     # Replace placeholders with items
     for item, value in kwargs.items():
         # Skip empty values

@@ -57,6 +57,8 @@ def add_extensions(tab, **kwargs):
         kwargs['github'] = st.text_input('Github', 'hejazizo')
         if not kwargs['github']:
             st.warning('For extensions, you must enter your Github username.')
+            kwargs['profile_views'] = None
+            kwargs['github_stats'] = None
             return kwargs
 
         kwargs['github_stats'] = None
@@ -70,7 +72,7 @@ def add_extensions(tab, **kwargs):
     return kwargs
 
 
-def add_skills(tab, **kwargs):
+def add_tech_stack(tab, **kwargs):
     """
     Add tech stacks to tab.
 
@@ -93,19 +95,30 @@ def add_skills(tab, **kwargs):
         kwargs['tech_stacks'] = kwargs['tech_stacks'].split('\n')
         kwargs['tech_stacks'] = list(filter(lambda x: x, kwargs['tech_stacks']))
 
-        kwargs['skills'] = col2.text_area('Skills:', skills, height=300, key='skills')
-        kwargs['skills'] = kwargs['skills'].split('\n')
-        kwargs['skills'] = list(filter(lambda x: x, kwargs['skills']))
-
         # Logos and badges
-        for key in ['tech_stacks', 'skills']:
-            logos = ['-'.join(tech_stack.split()) for tech_stack in kwargs[key]]
-            badges = [urllib.parse.quote(tech_stack) for tech_stack in kwargs[key]]
+        logos = ['-'.join(tech_stack.split()) for tech_stack in kwargs['tech_stacks']]
+        badges = [urllib.parse.quote(tech_stack) for tech_stack in kwargs['tech_stacks']]
 
-            # Format the final url
-            kwargs[key] = zip(badges, logos)
-            kwargs[key] = [BADGE_TEMPLATE.format(
-                badge=badge, logo=logo, style=style, color=color
-            ) for badge, logo in kwargs[key]]
+        # Format the final url
+        kwargs['tech_stacks'] = zip(badges, logos)
+        kwargs['tech_stacks'] = [BADGE_TEMPLATE.format(
+            badge=badge, logo=logo, style=style, color=color
+        ) for badge, logo in kwargs['tech_stacks']]
+        kwargs['tech_stacks'] = ' '.join(kwargs['tech_stacks'])
+
+    return kwargs
+
+
+def add_skills(tab, **kwargs):
+    with tab:
+        st.write('''Add your skills. You can add any skills you want.
+        **Just make sure to separate them with a new line.**
+        ''')
+        col1, col2 = st.columns(2)
+        kwargs['skills'] = col1.text_area('Skills:', skills, height=300, key='skills')
+        kwargs['skills'] = kwargs['skills'].split('\n')
+        kwargs['skills'] = filter(lambda x: x, kwargs['skills'])
+        kwargs['skills'] = [f'- {skill}' for skill in kwargs['skills']]
+        kwargs['skills'] = '\n'.join(kwargs['skills'])
 
     return kwargs

@@ -21,10 +21,8 @@ Django
 Visual Studio Code
 '''
 
-skills = '''Deep Learning
-Machine Learning
-Computer Vision
+skills = '''Machine Learning
+Deep Learning
 Natural Language Processing
-Data Engineering
-Data Visualization
+Computer Vision
 '''

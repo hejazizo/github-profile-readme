@@ -12,7 +12,7 @@ if project_root not in sys.path:
 
 from src.github_profile import generate_profile
 from src.sections import (add_description, add_extensions, add_personal_info,
-                          add_skills, add_social_accounts)
+                          add_skills, add_social_accounts, add_tech_stack)
 
 st.set_page_config(
     page_title='Github Profile Readme Generator',
@@ -26,6 +26,7 @@ st.set_page_config(
 )
 
 st.title(':zap: Github Profile Readme Generator')
+st.image('src/assets/profile-with-readme.png')
 st.sidebar.image('src/assets/logo.jpeg', width=300)
 st.sidebar.markdown('''
 :bulb: Built by [Pytopia](pytopia.ai) team.
@@ -43,11 +44,12 @@ Themes are added by the community. If you want to add a theme, check out the [Gi
 '''
 
 st.header('Personalize your Readme')
-tab1, tab2, tab3, tab4, tab5 = st.tabs([
+tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
     ':bust_in_silhouette: Profile Info',
     ':globe_with_meridians: Social Accounts',
     ':memo: Description',
     ':computer: Skills',
+    ':gear: Tech Stack',
     ':heavy_plus_sign: Extensions'
 ])
 kwargs = {}
@@ -55,7 +57,8 @@ kwargs = add_personal_info(tab1, **kwargs)
 kwargs = add_social_accounts(tab2, **kwargs)
 kwargs = add_description(tab3, **kwargs)
 kwargs = add_skills(tab4, **kwargs)
-kwargs = add_extensions(tab5, **kwargs)
+kwargs = add_tech_stack(tab5, **kwargs)
+kwargs = add_extensions(tab6, **kwargs)
 
 
 st.header('README.md Preview')
