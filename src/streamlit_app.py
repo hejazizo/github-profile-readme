@@ -17,7 +17,7 @@ from src.sections import (add_description, add_extensions, add_personal_info,
 st.set_page_config(
     page_title='Github Profile Readme Generator',
     page_icon='🧊',
-    layout='wide',
+    layout='centered',
     initial_sidebar_state='collapsed',
     menu_items={
         'Report a bug': 'https://github.com/hejazizo/github-profile-readme/issues',
