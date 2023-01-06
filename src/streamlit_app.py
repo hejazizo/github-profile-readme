@@ -12,13 +12,13 @@ if project_root not in sys.path:
 
 from src.github_profile import generate_profile
 from src.sections import (add_description, add_extensions, add_personal_info,
-                          add_social_accounts, add_tech_stacks)
+                          add_skills, add_social_accounts)
 
 st.set_page_config(
     page_title='Github Profile Readme Generator',
     page_icon='🧊',
     layout='wide',
-    initial_sidebar_state='expanded',
+    initial_sidebar_state='collapsed',
     menu_items={
         'Report a bug': 'https://github.com/hejazizo/github-profile-readme/issues',
         'About': 'Built by [Pytopia](pytopia.ai) team.'
@@ -47,14 +47,14 @@ tab1, tab2, tab3, tab4, tab5 = st.tabs([
     ':bust_in_silhouette: Profile Info',
     ':globe_with_meridians: Social Accounts',
     ':memo: Description',
-    ':computer: Tech Stacks',
+    ':computer: Skills',
     ':heavy_plus_sign: Extensions'
 ])
 kwargs = {}
 kwargs = add_personal_info(tab1, **kwargs)
 kwargs = add_social_accounts(tab2, **kwargs)
 kwargs = add_description(tab3, **kwargs)
-kwargs = add_tech_stacks(tab4, **kwargs)
+kwargs = add_skills(tab4, **kwargs)
 kwargs = add_extensions(tab5, **kwargs)
 
 

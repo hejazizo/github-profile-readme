@@ -1,3 +1,3 @@
-## 🛠 Tech Stack
+### ⚙️ Tech Stack
 
 { value }

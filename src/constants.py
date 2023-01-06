@@ -9,12 +9,22 @@ Docker
 Kubernetes
 TensorFlow
 PyTorch
-Keras
 Scikit Learn
+MongoDB
+MySQL
+PostgreSQL
 Pandas
 Numpy
 Matplotlib
 Flask
 Django
 Visual Studio Code
+'''
+
+skills = '''Deep Learning
+Machine Learning
+Computer Vision
+Natural Language Processing
+Data Engineering
+Data Visualization
 '''
