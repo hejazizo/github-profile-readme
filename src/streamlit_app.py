@@ -3,13 +3,16 @@ from pathlib import Path
 
 import streamlit as st
 
+# Add project root to sys.path, so that we can import modules from src
+# This is needed because streamllit cloud is running streamlit_app.py
+# from the root directory.
 project_root = str(Path(__file__).parent.parent.absolute())
 if project_root not in sys.path:
     sys.path.append(project_root)
 
 from src.github_profile import generate_profile
 from src.sections import (add_description, add_extensions, add_personal_info,
-                          add_social_accounts)
+                          add_social_accounts, add_tech_stacks)
 
 st.set_page_config(
     page_title='Github Profile Readme Generator',
@@ -40,17 +43,20 @@ Themes are added by the community. If you want to add a theme, check out the [Gi
 '''
 
 st.header('Personalize your Readme')
-tab1, tab2, tab3, tab4 = st.tabs([
+tab1, tab2, tab3, tab4, tab5 = st.tabs([
     ':bust_in_silhouette: Profile Info',
     ':globe_with_meridians: Social Accounts',
     ':memo: Description',
+    ':computer: Tech Stacks',
     ':heavy_plus_sign: Extensions'
 ])
 kwargs = {}
 kwargs = add_personal_info(tab1, **kwargs)
 kwargs = add_social_accounts(tab2, **kwargs)
 kwargs = add_description(tab3, **kwargs)
-kwargs = add_extensions(tab4, **kwargs)
+kwargs = add_tech_stacks(tab4, **kwargs)
+kwargs = add_extensions(tab5, **kwargs)
+
 
 st.header('README.md Preview')
 '''

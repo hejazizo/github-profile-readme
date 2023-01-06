@@ -3,3 +3,18 @@ default_description = """- 💻 Owner of [**PyTopia**](https://github.com/pytopi
 - 🌱 I also teach Python, Machine Learning, Git, etc. Visit PyTopia website, [Pytopia.ai](https://www.pytopia.ai), and also my [teaching material](https://github.com/pytopia).
 - 📫 How to reach me: hejazizo@ualberta.ca
 """
+
+tech_stacks = '''Python
+Docker
+Kubernetes
+TensorFlow
+PyTorch
+Keras
+Scikit Learn
+Pandas
+Numpy
+Matplotlib
+Flask
+Django
+Visual Studio Code
+'''

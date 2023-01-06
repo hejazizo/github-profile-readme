@@ -7,6 +7,17 @@ def generate_profile(theme, **kwargs):
     with open(f"src/themes/{theme}/profile.txt") as f:
         profile = f.read()
 
+    # generate tech stacks badges
+    tech_stacks = kwargs.get('tech_stacks', [])
+    kwargs['tech_stacks'] = ''
+    for tech_stack in tech_stacks:
+        badge_path = Path(f"src/themes/{theme}/tech_stacks/{tech_stack}.txt")
+        if badge_path.exists():
+            badge = open(badge_path).read()
+            kwargs['tech_stacks'] += badge + '\n'
+        else:
+            kwargs['tech_stacks'] += tech_stack + '\n'
+
     # Replace placeholders with items
     for item, value in kwargs.items():
         # Skip empty values
