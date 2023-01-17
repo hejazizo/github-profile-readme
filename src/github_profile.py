@@ -4,7 +4,7 @@ from pathlib import Path
 def generate_profile(theme, **kwargs):
     """Generate profile readme from theme and kwargs"""
     # Read theme profile
-    with open(f"src/themes/{theme}/profile.txt") as f:
+    with open(f"../src/themes/{theme}/profile.txt") as f:
         profile = f.read()
 
     # Replace placeholders with items
@@ -15,7 +15,7 @@ def generate_profile(theme, **kwargs):
             continue
 
         # Skip items that don't exist in theme
-        item_path = Path(f"src/themes/{theme}/{item}.txt")
+        item_path = Path(f"../src/themes/{theme}/{item}.txt")
         if not item_path.exists():
             continue
 

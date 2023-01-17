@@ -2,6 +2,7 @@ import sys
 from pathlib import Path
 
 import streamlit as st
+from PIL import Image
 
 # Add project root to sys.path, so that we can import modules from src
 # This is needed because streamllit cloud is running streamlit_app.py
@@ -25,9 +26,11 @@ st.set_page_config(
     }
 )
 
+image1 = Image.open('../src/assets/profile-with-readme.png')
+image2 = Image.open('../src/assets/logo.jpeg')
 st.title(':zap: Github Profile Readme Generator')
-st.image('src/assets/profile-with-readme.png')
-st.sidebar.image('src/assets/logo.jpeg', width=300)
+st.image(image1)
+st.sidebar.image(image2, width=300)
 st.sidebar.markdown('''
 :bulb: Built by [Pytopia](pytopia.ai) team.
 ''')
@@ -69,7 +72,7 @@ st.header('README.md Preview')
 '''
 
 # Select Theme
-themes = Path('src/themes').iterdir()
+themes = Path('../src/themes').iterdir()
 themes = [theme.name for theme in themes]
 theme = st.selectbox('Theme:', themes)
 
