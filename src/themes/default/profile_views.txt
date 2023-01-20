@@ -1,1 +1,4 @@
-![visitors](https://visitor-badge.glitch.me/badge?page_id=page.id&left_color=green&right_color=red) { value }
+<p align="center"> 
+  Visitor count<br>
+  <img src="https://profile-counter.glitch.me/hejazizo/count.svg" /> { value }
+</p>
