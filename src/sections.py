@@ -110,6 +110,11 @@ def add_tech_stack(tab, **kwargs):
 
 
 def add_skills(tab, **kwargs):
+    """
+    Add Skills to tab.
+
+    :param tab: Streamlit tab
+    """
     with tab:
         st.write('''Add your skills. You can add any skills you want.
         **Just make sure to separate them with a new line.**
