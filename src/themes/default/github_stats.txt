@@ -1,4 +1,5 @@
 <div>
-  <img width="45%" align="left" src="https://github-readme-stats.vercel.app/api/top-langs?username={ value }&show_icons=true&locale=en&layout=compact" alt="{ value }" />
-  <img width="50%"  src="https://github-readme-streak-stats.herokuapp.com/?user={ value }&" alt="{ value }" />
+  <img width="35%" src="https://github-readme-streak-stats.herokuapp.com/?user={ value }}&" alt={ value } />
+  <img width="35%" src="https://github-readme-stats.anuraghazra1.vercel.app/api?username={ value }&show_icons=true"  alt={ value } />
+  <img width="29%" src="https://github-readme-stats.vercel.app/api/top-langs?username={ value }&show_icons=true&locale=en&layout=compact" alt={ value } />
 </div>
