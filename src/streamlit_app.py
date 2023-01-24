@@ -2,7 +2,7 @@ import sys
 from pathlib import Path
 
 import streamlit as st
-from PIL import Image
+
 
 # Add project root to sys.path, so that we can import modules from src
 # This is needed because streamllit cloud is running streamlit_app.py
