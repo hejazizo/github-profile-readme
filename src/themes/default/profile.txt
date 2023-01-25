@@ -1,5 +1,6 @@
 { name }
 
+{ gender }
 { profile_views }
 { twitter }
 { linkedin }
