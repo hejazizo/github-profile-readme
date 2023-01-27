@@ -1,4 +1,4 @@
-# github-profile-readme
+# Github Profile Readme
 
 ## How to Run
 First, you need to install the dependencies. You can do this by running the following command:

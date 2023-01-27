@@ -1,2 +1,2 @@
-python==3.9
 streamlit==1.17.0
+pytest==7.2.1
