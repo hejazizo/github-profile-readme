@@ -15,7 +15,6 @@ class GenerateProfile:
             profile = f.read()
         return profile
 
-
     def __call__(self):
         # Replace placeholders with items
         for item, value in self.kwargs.items():
