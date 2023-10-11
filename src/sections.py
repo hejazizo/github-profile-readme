@@ -4,6 +4,8 @@ import streamlit as st
 
 from src.constants import default_description, skills, tech_stacks
 
+from pathlib import Path
+
 
 def add_personal_info(tab, **kwargs):
     """
@@ -64,6 +66,40 @@ def add_extensions(tab, **kwargs):
         kwargs['github_stats'] = None
         if st.checkbox('Show Github Stats', value=True):
             kwargs['github_stats'] = kwargs['github']
+            advanced = st.checkbox('Advanced')
+            if advanced:
+                kwargs['user'] = kwargs['github']
+                
+                with open("src/themes/default/github_stats_themes/theme.txt", 'r') as f:
+                    stats_themes = f.read()
+                
+                kwargs['theme'] = st.selectbox('Select a theme', [option for option in stats_themes])
+                
+                kwargs['hide_border'] = st.selectbox('Hide Borders?', ['True', 'False'])
+                
+                kwargs['card_width'] = st.select_slider('Select the size of the box',
+                                                           options = [300,350,400,450,500,550,600,650])
+                
+                st.write('Select days to be excluded:')
+                col1, col2, col3, col4, col5, col6, col7 = st.columns(7)
+                option1 = col1.checkbox('Sun')
+                option2 = col2.checkbox('Mon')
+                option3 = col3.checkbox('Tue')
+                option4 = col4.checkbox('Wed')
+                option5 = col5.checkbox('Thu')
+                option6 = col6.checkbox('Fri')
+                option7 = col7.checkbox('Sat')
+                if not any([option1, option2,option3, option4, option5, option6, option7]):
+                    pass
+                elif sum([option1, option2,option3, option4, option5, option6, option7]):
+                    kwargs['exclude_days'] = str(sum([i for i, option in enumerate([option1, option2, option3, option4, option5, option6, option7]) if option]))
+                else:
+                    kwargs['exclude_days'] = "%2C".join([str(i) for i, option in enumerate([option1, option2, option3, option4, option5, option6, option7]) if option])
+                
+                kwargs['locale'] = st.selectbox('Select local language:', ['en', 'fa'])
+
+                
+                
 
         kwargs['profile_views'] = None
         if st.checkbox('Show Github Profile Views', value=True):
