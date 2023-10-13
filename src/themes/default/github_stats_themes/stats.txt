@@ -1,0 +1,6 @@
+{ user }
+{ theme }
+{ hide_border }
+{ card_width }
+{ exclude_days }
+{ locale }

@@ -76,7 +76,7 @@ theme = st.selectbox('Theme:', themes)
 # Generate Profile
 profile = generate_profile(theme, **kwargs)
 tab1, tab2 = st.tabs(['Preview', 'Code'])
-tab1.markdown(profile)
+tab1.markdown(profile, unsafe_allow_html=True)
 
 with tab2:
     'Copy the code below and paste it in your README.md file'

@@ -27,6 +27,25 @@ def generate_profile(theme, **kwargs):
 
     return profile
 
+def update_html_code(**kwargs):
+ 
+ with open(f'src/themes/default/github_stats_themes/stats.txt') as f:
+    advanced_keys = f.read()
+
+ html_code = ""
+
+ # Update the values.
+ for key, value in kwargs.items():
+   
+    if key in advanced_keys:
+        if not html_code:
+            html_code += f'{key}={value}'
+        else:
+            html_code += f'&{key}={value}'
+    
+   
+ return html_code
+
 
 if __name__ == '__main__':
     # Personal Info
@@ -51,3 +70,9 @@ if __name__ == '__main__':
     # Generate Readme
     profile = generate_profile(theme, name=name, email=email)
     print(profile)
+    
+    user = "johndoe"
+    theme = "dark"
+
+    html_code = update_html_code(user=user, theme=theme, email=email)
+    print(html_code)
