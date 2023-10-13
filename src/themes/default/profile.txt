@@ -13,6 +13,7 @@
 { skills }
 { tech_stacks }
 
+{ github_langs }
 { github_stats }
 
 

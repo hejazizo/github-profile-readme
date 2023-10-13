@@ -6,6 +6,8 @@ from src.constants import default_description, skills, tech_stacks
 
 from pathlib import Path
 
+from github_profile import update_html_code
+
 
 def add_personal_info(tab, **kwargs):
     """
@@ -66,21 +68,30 @@ def add_extensions(tab, **kwargs):
         kwargs['github_stats'] = None
         if st.checkbox('Show Github Stats', value=True):
             kwargs['github_stats'] = kwargs['github']
+            kwargs['github_langs'] = kwargs['github']
+
+            # Advanced options and themes for github_stats
             advanced = st.checkbox('Advanced')
             if advanced:
-                kwargs['user'] = kwargs['github']
+                st.divider()
+                st.write('Github Stats Advanced Settings:')
+                col_1, col_2 = st.columns(2)
+                advanced_options = dict()
+                advanced_options[''] = kwargs['github']
                 
-                with open("src/themes/default/github_stats_themes/theme.txt", 'r') as f:
-                    stats_themes = f.read()
+                with open("src/themes/default/github_stats_themes/theme.txt") as f:
+                    stats_themes = f.readlines()
                 
-                kwargs['theme'] = st.selectbox('Select a theme', [option for option in stats_themes])
+                advanced_options['theme'] = col_1.selectbox('Select a theme', [option for option in stats_themes])
                 
-                kwargs['hide_border'] = st.selectbox('Hide Borders?', ['True', 'False'])
+                advanced_options['hide_border'] = col_1.selectbox('Hide Borders?', ['True', 'False'])
                 
-                kwargs['card_width'] = st.select_slider('Select the size of the box',
-                                                           options = [300,350,400,450,500,550,600,650])
+                advanced_options['card_width'] = col_1.select_slider('Select the size of the box',
+                                                           options = [350,400,450,500,550,600,650])
                 
-                st.write('Select days to be excluded:')
+                advanced_options['locale'] = col_1.selectbox('Select local language:', ['en', 'fa'])
+                
+                col_1.write('Select days to be excluded:')
                 col1, col2, col3, col4, col5, col6, col7 = st.columns(7)
                 option1 = col1.checkbox('Sun')
                 option2 = col2.checkbox('Mon')
@@ -89,17 +100,25 @@ def add_extensions(tab, **kwargs):
                 option5 = col5.checkbox('Thu')
                 option6 = col6.checkbox('Fri')
                 option7 = col7.checkbox('Sat')
-                if not any([option1, option2,option3, option4, option5, option6, option7]):
+                days = {'Sun':option1, 'Mon':option2, 'Tue':option3, 'Wed':option4, 'Thu':option5, 'Fri':option6, 'Sat':option7}
+                selected_days = []
+                for day, option in days.items():
+                    if option:
+                        selected_days.append(day)
+                
+                if selected_days.__len__()==0:
                     pass
-                elif sum([option1, option2,option3, option4, option5, option6, option7]):
-                    kwargs['exclude_days'] = str(sum([i for i, option in enumerate([option1, option2, option3, option4, option5, option6, option7]) if option]))
                 else:
-                    kwargs['exclude_days'] = "%2C".join([str(i) for i, option in enumerate([option1, option2, option3, option4, option5, option6, option7]) if option])
+                    string = f'{selected_days[0]}'
+                    if selected_days.__len__() > 1:
+                        for item in selected_days[1:]:
+                            string += f'%2C{item}'
+                    advanced_options['exclude_days'] = string
                 
-                kwargs['locale'] = st.selectbox('Select local language:', ['en', 'fa'])
-
-                
-                
+                html_code = update_html_code(**advanced_options)
+                kwargs['github_stats'] = html_code
+                st.divider()
+     
 
         kwargs['profile_views'] = None
         if st.checkbox('Show Github Profile Views', value=True):
